@@ -15,3 +15,10 @@ RUN apt-get update && apt-get install -y libgmp10
 
 COPY --from=builder /root/.local/bin/hledger /usr/local/bin/hledger
 COPY --from=builder /root/.local/bin/hledger-web /usr/local/bin/hledger-web
+
+# Keep the journal file where we can mount it.
+ENV LEDGER_FILE=/journal.txt
+RUN touch /journal.txt
+
+# Set this to help resolve unicode issues.
+ENV LANG=en_US.UTF-8
