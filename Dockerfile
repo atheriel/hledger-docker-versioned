@@ -22,3 +22,7 @@ RUN touch /journal.txt
 
 # Set this to help resolve unicode issues.
 ENV LANG=en_US.UTF-8
+
+EXPOSE 5000
+
+CMD ["/usr/local/bin/hledger-web", "--serve", "--host=0.0.0.0"]
