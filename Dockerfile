@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y libtinfo5
 COPY --from=builder /root/.local/bin/hledger /usr/local/bin/hledger
 COPY --from=builder /root/.local/bin/hledger-web /usr/local/bin/hledger-web
 
+# Check that the image is working correctly.
+RUN /usr/local/bin/hledger --version
+
 # Keep the journal file where we can mount it.
 ENV LEDGER_FILE=/journal.txt
 RUN touch /journal.txt
